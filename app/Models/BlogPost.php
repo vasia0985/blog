@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
+const UNKNOWN_USER = 1;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +20,6 @@ class BlogPost extends Model
             'content_raw',
             'is_published',
             'published_at',
-            'user_id',
         ];
 
     /**
