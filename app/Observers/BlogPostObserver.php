@@ -59,6 +59,7 @@ class BlogPostObserver
         $this->setPublishedAt($blogPost);
 
         $this->setSlug($blogPost);
+
     }
 
     /**

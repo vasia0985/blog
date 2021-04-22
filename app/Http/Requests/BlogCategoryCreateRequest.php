@@ -33,3 +33,4 @@ class BlogCategoryCreateRequest extends FormRequest
         ];
     }
 }
+

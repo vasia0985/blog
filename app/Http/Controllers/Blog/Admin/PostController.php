@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+
+use App\Models\BlogPost;
+use App\Http\Requests\BlogPostCreateRequest;
+use App\Jobs\BlogPostAfterCreateJob;
+use App\Jobs\BlogPostAfterDeleteJob;
 use App\Repositories\BlogPostRepository;
 use App\Repositories\BlogCategoryRepository;
 use App\Http\Requests\BlogPostUpdateRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\BlogPost;
-use App\Http\Requests\BlogPostCreateRequest;
 
 class PostController extends  BaseController
 {
@@ -68,6 +71,8 @@ class PostController extends  BaseController
         $item = (new BlogPost())->create($data); //створюємо об'єкт і додаємо в БД
 
         if ($item) {
+            $job = new BlogPostAfterCreateJob($item);
+            $this->dispatch($job);
             return redirect()
                 ->route('blog.admin.posts.edit', [$item->id])
                 ->with(['success' => 'Успішно збережено']);
