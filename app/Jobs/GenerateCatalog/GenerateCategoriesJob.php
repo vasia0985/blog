@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\GenerateCatalog;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -9,24 +9,18 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class BlogPostAfterDeleteJob implements ShouldQueue
+class GenerateCategoriesJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    /**
-     * @var int
-     */
-    private $blogPostId;
 
     /**
      * Create a new job instance.
      *
-     * @param int $blogPostId
-     *
      * @return void
      */
-    public function __construct($blogPostId)
+    public function __construct()
     {
-        $this->blogPostId = $blogPostId;
+        //
     }
 
     /**
@@ -36,6 +30,6 @@ class BlogPostAfterDeleteJob implements ShouldQueue
      */
     public function handle()
     {
-        logs()->warning("Видалено запис в блозі [{$this->blogPostId}]");
+        //
     }
 }
